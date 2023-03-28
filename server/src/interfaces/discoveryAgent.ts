@@ -1,7 +1,7 @@
 import { Endpoint } from './endpoint.js'
 
 export interface DiscoveryAgentMessage {
-  type: 'init' | 'update' | 'error'
+  type: 'init' | 'update' | 'error' | 'exit'
   payload?: object
 }
 
