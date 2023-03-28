@@ -6,7 +6,7 @@ export interface mDnsData {
   fullname: string
   txt: Array<string>
   host: string
-  interfaceIndex: 1
+  interfaceIndex: number
   networkInterface: string
 }
 

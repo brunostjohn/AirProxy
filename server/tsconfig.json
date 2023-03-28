@@ -36,5 +36,5 @@
     "dist",
     "node_modules"
   ],
-  "include": ["src", "src/mdnsInterfaces.ts"]
+  "include": ["src", "src/device-discovery/interfaces/mdnsInterfaces.tsterfaces.ts"]
 }
