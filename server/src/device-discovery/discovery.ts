@@ -116,3 +116,12 @@ browser.on('update', (data: mDnsData) => {
   if (parsed != undefined && updateData(parsed) === false) appendUnknown(parsed)
   shipUpdate()
 })
+
+function exitHandler() {
+  browser.stop()
+  parentPort?.close()
+}
+
+parentPort?.on('message', message => {
+  if ((message.type = 'exit')) exitHandler()
+})

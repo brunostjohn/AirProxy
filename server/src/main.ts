@@ -7,6 +7,7 @@ import { PersistentStorage } from './interfaces/persistentStorage.js'
 import { readFileSync, writeFileSync } from 'fs'
 import { Endpoint, EndpointMap } from './interfaces/endpoint.js'
 import { inspect } from 'util'
+import * as http from 'http'
 
 const nodePath = resolve(process.argv[1])
 const modulePath = resolve(fileURLToPath(import.meta.url))
@@ -48,6 +49,12 @@ function handleUpdate(updateContent: DeviceUpdatePayload) {
 }
 
 function appendUnknown(endpoint: Endpoint) {
+  if (
+    endpoint.name == undefined ||
+    (endpoint.map as EndpointMap).address == undefined ||
+    (endpoint.map as EndpointMap).port == undefined
+  )
+    return
   const attemptToFind = unknownDevices.findIndex((element: Endpoint) => {
     if ((element.map as EndpointMap).address === (endpoint.map as EndpointMap).address) return true
     return false
@@ -72,9 +79,18 @@ function appendUnknown(endpoint: Endpoint) {
   }
 }
 
+async function handler(_request: http.IncomingMessage, response: http.ServerResponse) {
+  response.setHeader('content-type', 'application/json')
+  response.writeHead(200, 'OK')
+  response.end('{"ping": "pong"}')
+}
+
+const server = http.createServer(handler)
+
 export default function main() {
   if (isCLI) {
     readPersistent()
+
     const discoveryThread = spawnDiscovery()
     discoveryThread.on('message', (message: DiscoveryAgentMessage) => {
       if (message.type === 'init') {
@@ -82,6 +98,28 @@ export default function main() {
       }
       if (message.type === 'update') handleUpdate(message.payload as DeviceUpdatePayload)
     })
+
+    server.listen(8008, '127.0.0.1', () => {
+      console.log('Listening for requests at http://127.0.0.1:8008')
+    })
+
+    function exitHandler() {
+      discoveryThread.postMessage({ type: 'exit' })
+      console.log('Stopped discovery agent.')
+      discoveryThread.terminate()
+      server.close()
+      console.log('Stopped webserver.\nExiting.')
+      process.exit(0)
+    }
+
+    process.on('exit', exitHandler.bind(null, { cleanup: true }))
+
+    process.on('SIGINT', exitHandler.bind(null, { exit: true }))
+
+    process.on('SIGUSR1', exitHandler.bind(null, { exit: true }))
+    process.on('SIGUSR2', exitHandler.bind(null, { exit: true }))
+
+    process.on('uncaughtException', exitHandler.bind(null, { exit: true }))
   }
 }
 
