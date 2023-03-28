@@ -1,0 +1,11 @@
+$dark-blue: #120922;
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../assets/fonts/OpenSans/static/OpenSans/OpenSans-Regular.ttf');
+}
+
+body{
+    background-color: $dark-blue;
+    font-family: 'Open Sans';
+}

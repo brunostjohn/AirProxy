@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import ErrorModal from '../components/ErrorModal.vue';
 </script>
 
 <template>
+<ErrorModal />
   <main>
-    <TheWelcome />
+
   </main>
 </template>

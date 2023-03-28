@@ -1,0 +1,22 @@
+#modalContainer {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.438);
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    #modalItself {
+        background-color: white;
+        width: 60%;
+        height: 30%;
+        margin: auto;
+        border-radius: 15px;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        position: absolute;
+    }
+}

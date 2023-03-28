@@ -79,10 +79,16 @@ function appendUnknown(endpoint: Endpoint) {
   }
 }
 
-async function handler(_request: http.IncomingMessage, response: http.ServerResponse) {
-  response.setHeader('content-type', 'application/json')
-  response.writeHead(200, 'OK')
-  response.end('{"ping": "pong"}')
+async function handler(request: http.IncomingMessage, response: http.ServerResponse) {
+  if (request.url == '/ping') {
+    response.setHeader('content-type', 'application/json')
+    response.writeHead(200, 'OK')
+    response.end('{"ping": "pong"}')
+  } else if (request.url == '/') {
+    response.setHeader('content-type', 'application/json')
+    response.writeHead(200, 'OK')
+    response.end("This API isn't meant to be accessed from the browser, please head to the WebGUI.")
+  }
 }
 
 const server = http.createServer(handler)
