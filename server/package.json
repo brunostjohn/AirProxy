@@ -19,6 +19,7 @@
   "dependencies": {
     "airtunes2": "github:ciderapp/node_airtunes2",
     "dotenv": "^16.0.0",
+    "mdns-js": "^1.0.7",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
