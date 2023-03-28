@@ -1,13 +1,28 @@
-# Temporary folders and files
-.sass-cache/
-.test/
-npm-debug.log
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Distribution folders
-dist/
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
 
-# Packages folders
-node_modules/
+/cypress/videos/
+/cypress/screenshots/
 
-
-build/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
