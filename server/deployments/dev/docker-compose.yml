@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  airproxy-dev:
+  airproxy-server:
     image: node:16.14.2
     working_dir: /app
     network_mode: host

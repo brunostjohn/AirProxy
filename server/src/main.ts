@@ -106,8 +106,8 @@ export default function main() {
       if (message.type === 'update') handleUpdate(message.payload as DeviceUpdatePayload)
     })
 
-    server.listen(8008, '127.0.0.1', () => {
-      console.log('Listening for requests at http://127.0.0.1:8008')
+    server.listen(8008, '0.0.0.0', () => {
+      console.log('Listening for requests at http://0.0.0.0:8008')
     })
 
     function exitHandler() {

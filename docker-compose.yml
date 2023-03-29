@@ -1,0 +1,17 @@
+version: "3.9"
+name: airproxy
+services:
+  server:
+    image: brunostjohn/airproxy-server:0.0.1
+    restart: always
+    container_name: airproxy-server
+    network_mode: host
+  web:
+    image: brunostjohn/airproxy-web:0.0.1
+    restart: always
+    container_name: airproxy-web
+    ports:
+      - 5173:5173
+    depends_on:
+      - server
+

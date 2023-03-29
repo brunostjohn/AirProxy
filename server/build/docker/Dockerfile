@@ -4,14 +4,19 @@ FROM node:16 AS builder
 WORKDIR /opt/app
 
 COPY package*.json ./
-RUN npm install --omit optional
 COPY . .
+RUN npm install --omit optional
 RUN npm run build
 RUN rm -rf node_modules && npm i --production --ignore-scripts
 
 # Run Stage
 # ---
 FROM gcr.io/distroless/nodejs:16
+EXPOSE 8008
+EXPOSE 554/tcp
+EXPOSE 554/udp
+EXPOSE 3689
+EXPOSE 5353/udp
 
 USER nobody
 

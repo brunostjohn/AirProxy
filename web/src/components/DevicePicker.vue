@@ -3,6 +3,7 @@
 </script>
 
 <template>
+    <h2>Devices</h2>
     <div id="devicePicker">
         
     </div>

@@ -12,7 +12,7 @@ export default {
     return {
       visibility: `visibility: hidden;`,
       errorContent: 'Cannot connect to API server. Please check your Docker configuration.',
-      alive: setInterval(()=>{})
+      alive: setInterval(()=>{}),
     }
   },
   computed:{
@@ -28,7 +28,7 @@ export default {
     checkServerConnectivity() {
       let xhr = new XMLHttpRequest()
       xhr.timeout = 10
-        xhr.open('GET', 'http://127.0.0.1:8008/ping', true)
+        xhr.open('GET', document.location.hostname.split("").splice(0,-5) + '8008', true)
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         xhr.ontimeout = (e) => {
           this.visibility = `visibility: visible;`;
