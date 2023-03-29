@@ -1,4 +1,4 @@
-# AirProxy
+# ![App Logo](https://github.com/brunostjohn/AirProxy/raw/main/web/src/assets/icons/favicon-32x32.png)AirProxy
 
 A work in progress solution to proxy music from Spotify Connect to AirPlay
 
