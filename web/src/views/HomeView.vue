@@ -1,10 +1,21 @@
-<script setup lang="ts">
-import ErrorModal from '../components/ErrorModal.vue';
+<script lang="ts">
+import DevicePicker from '../components/DevicePicker.vue'
+
+export default {
+  components : {
+    DevicePicker
+  }
+}
 </script>
 
 <template>
-<ErrorModal />
   <main>
-
+    <h1>Welcome to the AirProxy dashboard.</h1>
+    <hr />
+    <DevicePicker />
   </main>
 </template>
+
+<style lang="scss" scoped>
+@import '../styles/home.scss'
+</style>

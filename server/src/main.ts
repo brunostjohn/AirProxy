@@ -80,6 +80,7 @@ function appendUnknown(endpoint: Endpoint) {
 }
 
 async function handler(request: http.IncomingMessage, response: http.ServerResponse) {
+  response.setHeader('Access-Control-Allow-Origin', '*')
   if (request.url == '/ping') {
     response.setHeader('content-type', 'application/json')
     response.writeHead(200, 'OK')
